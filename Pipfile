@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = {extras = ["all"], version = "*"}
+pika = "*"
+python-decouple = "*"
+boto3 = "*"
+celery = "*"
+flower = "*"
+pytest = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
