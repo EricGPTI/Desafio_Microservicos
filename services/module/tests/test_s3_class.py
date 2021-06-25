@@ -2,7 +2,7 @@ from decouple import config
 import json
 import sys
 
-sys.path.append('services/lib')
+sys.path.append('services/module')
 
 from s3 import S3
 
