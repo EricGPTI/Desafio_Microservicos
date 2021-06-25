@@ -13,6 +13,7 @@ flower = "*"
 pytest = "*"
 
 [dev-packages]
+pytest-rabbitmq = "*"
 
 [requires]
 python_version = "3.8"
