@@ -1,3 +1,4 @@
+import boto3
 from decouple import config
 import json
 import sys
@@ -32,12 +33,5 @@ def test_save_object():
     obj = s3_resource.save_object(_BUCKET_NAME, name, body)
     new_latest = s3_resource.get_latest_created_file(_BUCKET_NAME)['Key'].split('.')[0]
     assert new_latest == str(id)
-
-@mark.get
-def test_get_object_by_id():
-    id = '1'
-    object = s3_resource.get_objetct_id(_BUCKET_NAME, id)
-    assert object == 'teste'
-
 
 
