@@ -21,8 +21,8 @@ _BUCKET_NAME = config('BUCKET_NAME')
 
 mng = Manager(_RABBITMQ_DEFAULT_USER, _RABBITMQ_DEFAULT_PASS, _HOST)
 channel = mng.channel()
-mng.declare_exchange('rico', 'direct')
-mng.create_queue('rico')
+#mng.declare_exchange('notification', 'direct')
+#mng.create_queue('notification')
 
 app = FastAPI(debug=True)
 
@@ -38,5 +38,5 @@ async def callback(ch, method, properties, body):
     return obj
 
 mng.basic_qos(1)
-mng.basic_consume(queue_name='rico', callback=callback)
+mng.basic_consume(queue_name='notification', callback=callback)
 mng.consuming()

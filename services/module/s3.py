@@ -1,4 +1,5 @@
 import boto3
+import io
 
 class S3:
     def __init__(self, service, region_name, access_key, secret_key):
@@ -39,3 +40,12 @@ class S3:
         all = response['Contents']
         latest = max(all, key=lambda x: x['LastModified'])
         return latest
+
+    def get_object(self, bucket, key):
+        s3_cliente = self.create_client()
+        bytes_buffer = io.BytesIO()
+        s3_cliente.download_fileobj(Bucket=bucket, Key=key+'.json', Fileobj=bytes_buffer)
+        byte_value = bytes_buffer.getvalue()
+        str_data = byte_value.decode()
+        return str_data
+

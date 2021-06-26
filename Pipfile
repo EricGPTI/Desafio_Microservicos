@@ -10,10 +10,10 @@ python-decouple = "*"
 boto3 = "*"
 celery = "*"
 flower = "*"
-pytest = "*"
 
 [dev-packages]
-pytest-rabbitmq = "*"
+pytest = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.8"
