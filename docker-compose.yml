@@ -1,4 +1,3 @@
-version: "2"
 services:
     rabbitmq:
         image: rabbitmq:3-management
@@ -7,22 +6,21 @@ services:
         ports: 
             - 5672:5672
             - 15672:15672
-        volumes: 
+        volumes:
             - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
             - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
-        environment: 
+        environment:
             - RABBITMQ_DEFAULT_USER=admin
             - RABBITMQ_DEFAULT_PASS=password
         networks:
             - abc-networks
 
     publisher_service:
-        build:
-            - ./services/publisher/
+        build: ./services/publisher/
         container_name: publisher_service
         restart: always
         ports: 
-            - 8000:80
+            - 8080:8080
         volumes:
             - ./dados:/var/lib/python
         depends_on:
@@ -31,10 +29,11 @@ services:
             - abc-networks
 
     consumer_service:
-        build:
-            - ./services/consumer/
+        build: ./services/consumer/
         container_name: consumer_service
         restart: always
+        ports: 
+            - 8000:8000
         volumes:
             - ./dados:/var/lib/python
         depends_on:
